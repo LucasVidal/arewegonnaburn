@@ -55,7 +55,20 @@ public class VenueCSVParser {
 
 
 	public String humanizeString(String string) {
-		return string.replace("\"", "").trim();
+		
+		//Still encoding issues, fix later.
+		return string
+				.trim()
+				.replace("\"", "")
+				.replace("´", "'")
+				.replace("º", "¼")
+				.replace("Ü", "†")
+				.replace("ó", "—")
+				.replace("É", "ƒ")
+				.replace("Á", "ç")
+				.replace("Í", "ê")
+				.replace("Ó", "î")
+				;
 	}
 
 }
