@@ -1,6 +1,6 @@
 package com.amazinglystupidsoftware.arewegonnaburn.model.service;
 
-import android.util.Log;
+import com.amazinglystupidsoftware.arewegonnaburn.model.VenueCSVParser.Safe;
 
 public class VenueServiceModel {
 	
@@ -24,29 +24,23 @@ public class VenueServiceModel {
 	public VenueServiceModel(String[] fields)
 	{
 		super();
-		try{			
-			number = fields[0];
-			nombre = fields[1];
-			domicilio = fields[2];
-			nro_domicilio = fields[3];
-			nro_expediente = fields[4];
-			capacidad = fields[5];
-			clase = fields[6];
-			estado = fields[7];
-			dispocision_inscripcion_nro = fields[8];
-			fecha_disposicion_inscripcion = fields[9];
-			dispocision_reinscripcion_nro = fields[10];
-			fecha_disposicion_reinscripcion = fields[11];
-			dispocision_rechazo_nro = fields[12];
-			fecha_disposicion_rechazo = fields[13];
-			disposicion_recalculo_capacidad_nro = fields[14];
-			fecha_disposicion_recalculo_capacidad = fields[15];
-		}
-		catch (ArrayIndexOutOfBoundsException e)
-		{
-			Log.e(VenueServiceModel.class.getSimpleName(), e.getMessage());
-			e.printStackTrace();
-		}
+		Safe<String> safeIndex = new Safe<String>();
+		number = 								safeIndex.get(fields, 0);
+		nombre = 								safeIndex.get(fields, 1);
+		domicilio = 							safeIndex.get(fields, 2);
+		nro_domicilio = 						safeIndex.get(fields, 3);
+		nro_expediente = 						safeIndex.get(fields, 4);
+		capacidad = 							safeIndex.get(fields, 5);
+		clase = 								safeIndex.get(fields, 6);
+		estado = 								safeIndex.get(fields, 7);
+		dispocision_inscripcion_nro = 			safeIndex.get(fields, 8);
+		fecha_disposicion_inscripcion = 		safeIndex.get(fields, 9);
+		dispocision_reinscripcion_nro = 		safeIndex.get(fields, 10);
+		fecha_disposicion_reinscripcion = 		safeIndex.get(fields, 11);
+		dispocision_rechazo_nro = 				safeIndex.get(fields, 12);
+		fecha_disposicion_rechazo = 			safeIndex.get(fields, 13);
+		disposicion_recalculo_capacidad_nro = 	safeIndex.get(fields, 14);
+		fecha_disposicion_recalculo_capacidad = safeIndex.get(fields, 15);
 	}
 
 	public String getNumber() {

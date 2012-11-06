@@ -35,11 +35,13 @@ public class VenueDAO {
 	}
 	
 	private Venue convertFromServiceModel(VenueServiceModel vsm)
-	{	
+	{
+		VenueCSVParser parser = VenueCSVParser.getInstance();
 		return new Venue (
-				vsm.getNombre(), 
-				vsm.getDomicilio()+vsm.getNro_domicilio(), 
-				VenueCSVParser.getInstance().parseLeft(vsm.getCapacidad())
+				parser.humanizeString(vsm.getNumber()),
+				parser.humanizeString(vsm.getNombre()), 
+				parser.humanizeString(vsm.getDomicilio()+vsm.getNro_domicilio()), 
+				parser.parseLeft(vsm.getCapacidad())
 				);
 	}
 }

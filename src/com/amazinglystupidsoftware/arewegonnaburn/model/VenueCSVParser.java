@@ -11,11 +11,24 @@ public class VenueCSVParser {
 	
 	private static VenueCSVParser _INSTANCE;
 
-	protected static VenueCSVParser getInstance() {
+	public static VenueCSVParser getInstance() {
 		if (_INSTANCE == null)
 			_INSTANCE = new VenueCSVParser();
 
 		return _INSTANCE;
+	}
+	
+	public static class Safe<T>
+	{
+		public T get(T[] array, int index)
+		{
+			if (index < array.length)
+				return array[index];
+			
+			Log.w(VenueCSVParser.class.getSimpleName(), "Parse error: missing "+index+" field");
+			return null;
+		}
+		
 	}
 
 	protected List<VenueServiceModel> getVenueServiceModels() {
@@ -38,6 +51,11 @@ public class VenueCSVParser {
 			Log.e(VenueCSVParser.class.getSimpleName(),"Invalid number: "+str+".");
 			return -1;
 		}
+	}
+
+
+	public String humanizeString(String string) {
+		return string.replace("\"", "").trim();
 	}
 
 }

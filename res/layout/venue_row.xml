@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20sp"
+    android:layout_marginBottom="20sp" >
 
     <TextView
         android:id="@+id/nameTextView"
@@ -9,28 +11,17 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:gravity="left|center_vertical"
+        android:gravity="left|top"
         android:text="name"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
+    
     <TextView
         android:id="@+id/locationTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_toRightOf="@id/nameTextView"
-        android:layout_toLeftOf="@+id/capacityTextView"
-        android:gravity="left|center_vertical"
-        android:text="venue address and number"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-   
-     <TextView
-        android:id="@+id/capacityTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:gravity="right|center_vertical"
-        android:text="capacity"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_alignParentLeft="true"
+		android:layout_below="@id/nameTextView"
+        android:gravity="left|bottom"
+        android:text="address address 1234 1234"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 </RelativeLayout>

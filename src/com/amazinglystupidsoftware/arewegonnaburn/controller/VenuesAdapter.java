@@ -1,5 +1,6 @@
 package com.amazinglystupidsoftware.arewegonnaburn.controller;
 
+import java.util.Comparator;
 import java.util.List;
 
 import android.content.Context;
@@ -24,6 +25,16 @@ public class VenuesAdapter extends ArrayAdapter<Venue>{
 		this.venueList = venues;
 	}
 	
+	public void sort()
+	{
+		super.sort(new Comparator<Venue>() {
+			@Override
+			public int compare(Venue lhs, Venue rhs) {
+				return lhs.compareTo(rhs);
+			}
+		});
+	}
+	
 	@Override
     public View getView(int position, View convertView, ViewGroup parent) {
 		View rowView; 
@@ -36,12 +47,10 @@ public class VenuesAdapter extends ArrayAdapter<Venue>{
 		else rowView = convertView;
 		
 		TextView nameTextView = (TextView) rowView.findViewById(R.id.nameTextView);
-		TextView capacityTextView = (TextView) rowView.findViewById(R.id.capacityTextView);
 		TextView locationTextView = (TextView) rowView.findViewById(R.id.locationTextView);
 		Venue v = this.venueList.get(position);
 		nameTextView.setText(v.getName());
-		capacityTextView.setText(""+v.getCapacity());
-		locationTextView.setText(v.getLocation());
+		locationTextView.setText(""+v.getLocation());
 		return rowView;
     }
 }
