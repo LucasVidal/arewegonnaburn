@@ -17,21 +17,23 @@ public class VenueDAO {
 		return _INSTANCE;
 	}
 
+	private List<Venue> venueList=null;
+
 	public List<Venue> getAll() {
-		List<Venue> list = new ArrayList<Venue>();
+		venueList = new ArrayList<Venue>();
 		for (VenueServiceModel vnc : VenueCSVParser.getInstance().getVenueServiceModels())
-			list.add(convertFromServiceModel(vnc));
+			venueList.add(convertFromServiceModel(vnc));
 		
 		//removing invalid venues
 		List<Venue> toRemove = new ArrayList<Venue>();
 		
-		for (Venue v: list)
+		for (Venue v: venueList)
 			if (!v.isValid())
 				toRemove.add(v);
 		
-		list.removeAll(toRemove);
+		venueList.removeAll(toRemove);
 		
-		return list;
+		return venueList;
 	}
 	
 	private Venue convertFromServiceModel(VenueServiceModel vsm)
@@ -43,5 +45,16 @@ public class VenueDAO {
 				parser.humanizeString(vsm.getDomicilio()+vsm.getNro_domicilio()), 
 				parser.parseLeft(vsm.getCapacidad())
 				);
+	}
+
+	public Venue getVenueWithId(String venueId) {
+		if (venueList == null) 
+			venueList = getAll();
+		
+		for (Venue v : venueList)
+			if (v.getId().toLowerCase().equals(venueId))
+				return v;
+		
+		return null;
 	}
 }
